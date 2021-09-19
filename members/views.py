@@ -26,7 +26,7 @@ def register_user(request):
             messages.success(request,("Password is not matching!!"))
             return redirect('login')
     else:
-        return render(request,'login.html',{})
+        return render(request,'signup.html',{})
 
 def logout_user(request):
     logout(request)

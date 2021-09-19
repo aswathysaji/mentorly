@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>Login & Signup Form | CodingNepal</title> -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="wrapper">
+      {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+      <div class="title-text">
+        <div class="title signup">Signup Form</div>
+      </div>
+      <div class="form-container">
+        <div class="form-inner">
+          <form action="" method="POST" class="signup">
+            {% csrf_token %}
+            <div class="field">
+              <input type="text" placeholder="First Name" name="firstname" required>
+            </div>
+            <div class="field">
+              <input type="text" placeholder="Last Name" name="lastname" required>
+            </div>
+            <div class="field">
+              <input type="text" placeholder="User Name" name="username" required>
+            </div>
+            <div class="field">
+              <input type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="field">
+              <input type="password" name="password1" placeholder="Password" required>
+            </div>
+            <div class="field">
+              <input type="password" name="password2" placeholder="Confirm password" required>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Signup">
+            </div>
+          </form>
+</div>
+</div>
+</div>
+
+  </body>
+</html>
