@@ -4,4 +4,7 @@ from . models import Mentor
 # Create your views here.
 
 def home(request):
-    return render(request,'home.html',{})
+    mentors = Mentor.objects.all()
+    return render(request,'home.html',{
+        "mentors" : mentors
+    })

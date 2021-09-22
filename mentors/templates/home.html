@@ -40,10 +40,10 @@
         <div class="container">
 
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="{% url 'home' %}"><img src="{% static '' %}images/mentorly.png" alt="alternative"></a> 
+            <!-- <a class="navbar-brand logo-image" href="{% url 'home' %}"><img src="{% static '' %}images/mentorly.png" alt="alternative"></a>  -->
 
             <!-- Text Logo - Use this if you don't have a graphic logo -->
-            <!-- <a class="navbar-brand logo-text" href="index.html">Nubis</a> -->
+            <a class="navbar-brand logo-text" href="{% url 'home' %}">Mentor.ly</a>
 
             <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -211,68 +211,109 @@
 
 
     <!-- Features -->
-    <div class="wrapper" id="mentors">
+    <main>
+		<div class="text">
+			<h1>Our Mentors</h1>
+			<p>
+				A mentor is more than an adviser. A mentor provides you with wisdom, technical knowledge,
+            assistance, support, empathy and respect throughout, and often beyond, your graduate career.
+            Mentoring helps students understand how their ambitions fit into graduate education, department
+            life and career choices.
+			</p>
+		</div>
+		<header>
+			<p>
+				<span class="span">&#139;</span>
+				<span class="span">&#155;</span>
+			</p>
+		</header>
+		<section id="mentors">
+            {% for mentor in mentors %}
+                <div class="product">
+                    <picture>
+                        <img src="{{ mentor.image.url }}" alt="{{ mentor }}">
+                    </picture>
+                    <div class="detail">
+                        <p>
+                            <b>{{ mentor }}</b><br>
+                            <small>Skills : {{ mentor.skills }}</small>
+                        </p>
+                    </div>
+                    <div class="button">
+                        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                        {% if user.is_authenticated %}
+                            <a style="color: white;" onclick="Calendly.initPopupWidget({url: '{{ mentor.calendly }}'});return false;">Book Now</a>
+                        {% else %}
+                            <a href="{% url 'login' %}">Login to Book Session</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+		</section>
+	</main>
+    <!-- <div class="wrapper" id="mentors">
         <div class="container">
-            <di class="row">
+            <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Our Mentors</h2>
-                </div> <!-- end of col -->
-            </di>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="news-slider">
+                        <div class="news-slider__wrp swiper-wrapper">
+                          <div class="news-slider__item swiper-slide">
+                            <a href="" class="news__item">
+                              <div class="news__img">
+                                  <img src="{% static 'images/Aswathy Saji.jpeg' %}" alt="news">
+                              </div>
+                              <h5 class="name text-center">Aswathy Saji</h4>
+                              <p class="news__txt">
+                                Skills : HTML/CSS, JS, Bootstrap, Jquery, Django, Git, Github
+                              </p>
+                            </a>
+                            <div class="d-flex justify-content-evenly">
+                              
+                              <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                              <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                              {% if user.is_authenticated %}
+                              <div class="d-flex justify-content-evenly">
+                                  <a class="btn-solid-reg" onclick="Calendly.initPopupWidget({url: 'https:/calendly.com/aswathy2saji/30min'});return false;">Book Now</a>
+                              </div>
+                             {% else %}
+                             <div class="d-flex justify-content-evenly">
+                                  <a class="btn-solid-reg" href="{% url 'login' %}">Login/Signup to book session</a>
+                              </div>
+                            {% endif %}
+                          </div>
+                          </div>
+                    
+                          <div class="news-slider__item swiper-slide">
+                            <a href="#" class="news__item">
+                              <div class="news__img text-center">
+                                  <img src="{% static 'images/nafeela.jpg' %}" alt="news">
+                                </div>
+                                <h5 class="name text-center">Nafeela N</h4>
+                              <p class="news__txt">
+                                  Skills : HTML, CSS, Git, Github, Python
+                              </p>
+                            </a>
+                            {% if user.is_authenticated %}
+                              <div class="d-flex justify-content-evenly">
+                                  <a class="btn-solid-reg" href="#contact">Book Now</a>
+                              </div>
+                             {% else %}
+                             <div class="d-flex justify-content-evenly">
+                                  <a class="btn-solid-reg" href="{% url 'login' %}">Login/Signup to book session</a>
+                              </div>
+                            {% endif %}
+                          </div>
+                </div>
+            </div>
         </div>
         <div class="item-bg"></div>
-      
-        <div class="news-slider">
-          <div class="news-slider__wrp swiper-wrapper">
-            <div class="news-slider__item swiper-slide">
-              <a href="" class="news__item">
-                <div class="news__img">
-                    <img src="{% static 'images/Aswathy Saji.jpeg' %}" alt="news">
-                </div>
-                <h5 class="name text-center">Aswathy Saji</h4>
-                <p class="news__txt">
-                  Skills : HTML/CSS, JS, Bootstrap, Jquery, Django, Git, Github
-                </p>
-              </a>
-              <div class="d-flex justify-content-evenly">
-                <!-- Calendly link widget begin -->
-                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-                {% if user.is_authenticated %}
-                <div class="d-flex justify-content-evenly">
-                    <a class="btn-solid-reg" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/aswathy2saji/30min'});return false;">Book Now</a>
-                </div>
-               {% else %}
-               <div class="d-flex justify-content-evenly">
-                    <a class="btn-solid-reg" href="{% url 'login' %}">Login/Signup to book session</a>
-                </div>
-              {% endif %}
-            </div>
-            </div>
-      
-            <div class="news-slider__item swiper-slide">
-              <a href="#" class="news__item">
-                <div class="news__img text-center">
-                    <img src="{% static 'images/nafeela.jpg' %}" alt="news">
-                  </div>
-                  <h5 class="name text-center">Nafeela N</h4>
-                <p class="news__txt">
-                    Skills : HTML, CSS, Git, Github, Python
-                </p>
-              </a>
-              {% if user.is_authenticated %}
-                <div class="d-flex justify-content-evenly">
-                    <a class="btn-solid-reg" href="#contact">Book Now</a>
-                </div>
-               {% else %}
-               <div class="d-flex justify-content-evenly">
-                    <a class="btn-solid-reg" href="{% url 'login' %}">Login/Signup to book session</a>
-                </div>
-              {% endif %}
-            </div>
-            
-          </div>
-      
-          <div class="news-slider__ctr">
+        <div class="news-slider__ctr">
       
             <div class="news-slider__arrows">
               <button class="news-slider__arrow news-slider-prev">
@@ -290,12 +331,8 @@
             <div class="news-slider__pagination"></div>
       
           </div>
-      
-        </div>
-      
-      </div>
-      
-      <svg hidden="hidden">
+    </div>
+    <svg hidden="hidden">
         <defs>
           <symbol id="icon-arrow-left" viewBox="0 0 32 32">
             <title>arrow-left</title>
@@ -307,6 +344,8 @@
           </symbol>
         </defs>
       </svg>
+    </div>
+    </div> -->
 
 
     <!-- Testimonials -->
@@ -433,6 +472,7 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script> <!-- Bootstrap framework -->
     <script src="{% static 'js/swiper.min.js' %}"></script> <!-- Swiper for image and text sliders -->
     <script src="{% static 'js/scripts.js' %}"></script> <!-- Custom scripts -->
+    <script src="{% static 'js/slider.js' %}"></script>
     <script src="https://kit.fontawesome.com/97124b44f5.js" crossorigin="anonymous"></script>
 </body>
 </html>
