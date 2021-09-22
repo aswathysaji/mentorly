@@ -1,0 +1,53 @@
+{% load static %}
+<!--{% static '' %}-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Join as a mentor</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/roboto-font.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-5/css/fontawesome-all.min.css' %}">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'css/register.css' %}"/>
+	<link rel="icon" href="{% static 'images/favicon.png' %}">
+</head>
+<body class="form-v5">
+	<div class="page-content">
+		<div class="form-v5-content">
+			<form class="form-detail" action="#" method="post">
+				<h2>Join as a mentor</h2>
+				<div class="form-row">
+					<label for="full-name">Full Name</label>
+					<input type="text" name="full-name" id="full-name" class="input-text" required>
+				</div>
+				<div class="form-row">
+					<label for="your-email">Your Email</label>
+					<input type="text" name="your-email" id="your-email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+				</div>
+				<div class="form-row">
+					<label for="skills">Skills</label>
+					<input type="text" name="skills" id="skills" class="input-text" required>
+				</div>
+				<div class="form-row">
+					<label for="skills">Why do you want to become a mentor?</label>
+					<input type="text" name="desc" id="desc" class="input-text" required>
+				</div>
+				<div class="form-row">
+					<label for="skills">Do you have any experience as a mentor?</label>
+					<input type="text" name="experience" id="experience" class="input-text" required>
+				</div>
+				<div class="form-row">
+					<label for="skills">Calendly Account Link</label>
+					<input type="url" name="calendly" id="Calendly" class="input-text" placeholder="Eg:https://calendly.com/username/30min" required>
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Join Now">
+				</div>
+			</form>
+		</div>
+	</div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

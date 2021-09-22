@@ -1,10 +1,14 @@
+from django.contrib.auth.backends import RemoteUserBackend
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 
 # Create your views here.
-def register_user(request):
+def register(request):
+    return render(request,'register.html',{})
+
+def signup_user(request):
     if request.method == "POST":
         first_name = request.POST['firstname']
         last_name = request.POST['lastname']
