@@ -1,12 +1,27 @@
+from members.models import Registration
 from django.contrib.auth.backends import RemoteUserBackend
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
+from . models import Registration
 
 # Create your views here.
 def register(request):
-    return render(request,'register.html',{})
+    if request.method == 'POST':
+        full_name = request.POST['full-name']
+        email = request.POST['email']
+        skills = request.POST['skills']
+        desc = request.POST['desc']
+        experience = request.POST['experience']
+        calendly = request.POST['calendly']
+
+        register = Registration(name=full_name,email=email,skills=skills,description=desc,experience=experience,calendly=calendly)
+        register.save()
+
+        return redirect('home')
+    else:
+        return render(request,'register.html',{})
 
 def signup_user(request):
     if request.method == "POST":
