@@ -1,0 +1,64 @@
+{% load static %}
+<!--{% static 'css/' %}-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor.ly</title>
+    <link rel="stylesheet" href="{% static 'css/mentors.css' %}">
+</head>
+<body>
+    
+<div class="container">
+    <h1>Applications for mentors</h1>
+      <table class="rwd-table">
+        <tbody>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Skills</th>
+            <th>Why do you want to become a mentor?</th>
+            <th>Do you have any experience as a mentor?</th>
+            <th>Calendly Account Link</th>
+            <th>Action</th>
+          </tr>
+          {% for registration in registrations %}
+            <tr>
+                <td data-th="Full Name">
+                {{ registration }}
+                </td>
+                <td data-th="Email">
+                {{ registration.email }}
+                </td>
+                <td data-th="Skills">
+                    {{ registration.skills }}
+                </td>
+                <td data-th="Why do you want to become a mentor?">
+                {{ registration.description }}
+                </td>
+                <td data-th="Do you have any experience as a mentor?">
+                {{ registration.experience }}
+                </td>
+                <td data-th="Calendly Account Link">
+                {{ registration.calendly }}
+                </td>
+                <td data-th="Action">
+                    <span>
+                        <a style="text-decoration: none;color: green;" href="" class="mr-4" data-toggle="tooltip"
+                            data-placement="top" title="View Details"><i class="far fa-check-circle"></i> Accept</a>
+                            <br>
+                            <a style="text-decoration: none;color: red;" href="" data-toggle="tooltip"
+                                data-placement="top" title="Delete"><i
+                                    class="fa fa-trash"></i> Delete</a>
+                    </span>
+                </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script src="https://kit.fontawesome.com/97124b44f5.js" crossorigin="anonymous"></script>
+</body>
+</html>

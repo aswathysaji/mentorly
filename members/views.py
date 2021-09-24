@@ -7,6 +7,12 @@ from django.contrib.auth.models import User, auth
 from . models import Registration
 
 # Create your views here.
+def mentors(request):
+    registrations = Registration.objects.all()
+    return render(request,'mentors.html',{
+        "registrations" : registrations
+    })
+
 def register(request):
     if request.method == 'POST':
         full_name = request.POST['full-name']
